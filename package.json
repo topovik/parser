@@ -1,0 +1,21 @@
+{
+  "name": "parser",
+  "version": "1.0.0",
+  "description": "",
+  "main": "server.js",
+  "dependencies": {
+    "body-parser": "^1.18.3",
+    "cheerio": "^1.0.0-rc.2",
+    "express": "^4.16.3",
+    "node-uuid": "^1.4.8",
+    "request": "^2.87.0",
+    "sharp": "^0.20.3",
+    "tress": "^1.0.5"
+  },
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "start": "node node_module/nodemon/bin/nodemon"
+  },
+  "author": "",
+  "license": "ISC"
+}
