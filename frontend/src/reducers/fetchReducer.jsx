@@ -1,6 +1,7 @@
 const initialState = {
     mainArticles: [],
-    status: ''
+    status: '',
+    counter: 0
 }
 
 const fetchReducer = (state = initialState, action) => {
@@ -9,7 +10,7 @@ const fetchReducer = (state = initialState, action) => {
             return { ...state, status: 'loading' }
 
         case 'FETCH_ARTICLES_SUCCESS':
-            return { ...state, mainArticles: action.mainArticles, status: 'success' }
+            return { ...state, mainArticles: action.mainArticles, status: 'success', counter: action.counter }
 
         case 'FETCH_ARTICLES_ERROR':
             return { ...state, status: 'error' }

@@ -1,12 +1,14 @@
 const fs = require('fs');
-const path = require("path");
 const articles = require('./articles.json');
 const title = require('./title.json')
 const uuid = require('node-uuid');
 const router = require('express').Router();
 const request = require('request');
 const cheerio = require('cheerio');
-const sharp = require('sharp')
+const sharp = require('sharp');
+
+const titleModel = require('./mongoDb/title');
+const articlesModel = require('./mongoDb/articles');
 
 
 const URL = 'https://topovik.com/bussiness/samye-bogatye-zhenshhiny-v-mire-kto-oni'
@@ -45,13 +47,14 @@ request(URL, (err, res, body) => {
     if (result1 === null || Boolean(result1) === false) {
         console.log(err)
     } else if (result1.trim().slice(0, 4) === 'http') {
-        let name = result1.trim().slice(47, -4);
-        let path = `/home/dima/parser/test/${name}.webp`;
+        let nameNext = result1.trim().slice(47, -4);
+        let name = result1.trim().slice(47);
+        let pathStart = `/home/dima/parser/upload/${name}`;
+        let pathNext = `/home/dima/parser/test/${nameNext}.webp`;
         request
             .get(result1.toString())
-            .pipe(fs.createWriteStream(path))
-
-        result1 = path
+            .pipe(fs.createWriteStream(pathStart))
+        result1 = pathNext;
     }
 
     //2//
@@ -73,12 +76,14 @@ request(URL, (err, res, body) => {
     if (result2 === null || Boolean(result2) === false) {
         console.log(err)
     } else if (result2.trim().slice(0, 4) === 'http') {
-        let name = result2.trim().slice(47, -4);
-        let path = `/home/dima/parser/test/${name}.webp`;
+        let nameNext = result2.trim().slice(47, -4);
+        let name = result2.trim().slice(47);
+        let pathStart = `/home/dima/parser/upload/${name}`;
+        let pathNext = `/home/dima/parser/test/${nameNext}.webp`;
         request
             .get(result2.toString())
-            .pipe(fs.createWriteStream(path))
-        result2 = path;
+            .pipe(fs.createWriteStream(pathStart))
+        result2 = pathNext;
 
     }
 
@@ -101,13 +106,14 @@ request(URL, (err, res, body) => {
     if (result3 === null || Boolean(result3) === false) {
         console.log(err)
     } else if (result3.trim().slice(0, 4) === 'http') {
-        let name = result3.trim().slice(47, -4);
-        let path = `/home/dima/parser/test/${name}.webp`;
+        let nameNext = result3.trim().slice(47, -4);
+        let name = result3.trim().slice(47);
+        let pathStart = `/home/dima/parser/upload/${name}`;
+        let pathNext = `/home/dima/parser/test/${nameNext}.webp`;
         request
             .get(result3.toString())
-            .pipe(fs.createWriteStream(path))
-
-        result3 = path
+            .pipe(fs.createWriteStream(pathStart))
+        result3 = pathNext;
 
     }
 
@@ -130,12 +136,14 @@ request(URL, (err, res, body) => {
     if (result4 === null || Boolean(result4) === false) {
         console.log(err)
     } else if (result4.trim().slice(0, 4) === 'http') {
-        let name = result4.trim().slice(47, -4);
-        let path = `/home/dima/parser/test/${name}.webp`;
+        let nameNext = result4.trim().slice(47, -4);
+        let name = result4.trim().slice(47);
+        let pathStart = `/home/dima/parser/upload/${name}`;
+        let pathNext = `/home/dima/parser/test/${nameNext}.webp`;
         request
             .get(result4.toString())
-            .pipe(fs.createWriteStream(path))
-        result4 = path;
+            .pipe(fs.createWriteStream(pathStart))
+        result4 = pathNext;
     }
 
     //5//
@@ -157,12 +165,14 @@ request(URL, (err, res, body) => {
     if (result5 === null || Boolean(result5) === false) {
         console.log(err)
     } else if (result5.trim().slice(0, 4) === 'http') {
-        let name = result5.trim().slice(47, -4);
-        let path = `/home/dima/parser/test/${name}.webp`;
+        let nameNext = result5.trim().slice(47, -4);
+        let name = result5.trim().slice(47);
+        let pathStart = `/home/dima/parser/upload/${name}`;
+        let pathNext = `/home/dima/parser/test/${nameNext}.webp`;
         request
             .get(result5.toString())
-            .pipe(fs.createWriteStream(path))
-        result5 = path;
+            .pipe(fs.createWriteStream(pathStart))
+        result5 = pathNext;
     }
 
     //6//
@@ -184,12 +194,14 @@ request(URL, (err, res, body) => {
     if (result6 === null || Boolean(result6) === false) {
         console.log(err)
     } else if (result6.trim().slice(0, 4) === 'http') {
-        let name = result6.trim().slice(47, -4);
-        let path = `/home/dima/parser/test/${name}.webp`;
+        let nameNext = result6.trim().slice(47, -4);
+        let name = result6.trim().slice(47);
+        let pathStart = `/home/dima/parser/upload/${name}`;
+        let pathNext = `/home/dima/parser/test/${nameNext}.webp`;
         request
             .get(result6.toString())
-            .pipe(fs.createWriteStream(path))
-        result6 = path;
+            .pipe(fs.createWriteStream(pathStart))
+        result6 = pathNext;
     }
 
     //7//
@@ -211,12 +223,14 @@ request(URL, (err, res, body) => {
     if (result7 === null || Boolean(result7) === false) {
         console.log(err)
     } else if (result7.trim().slice(0, 4) === 'http') {
-        let name = result7.trim().slice(47, -4);
-        let path = `/home/dima/parser/test/${name}.webp`;
+        let nameNext = result7.trim().slice(47, -4);
+        let name = result7.trim().slice(47);
+        let pathStart = `/home/dima/parser/upload/${name}`;
+        let pathNext = `/home/dima/parser/test/${nameNext}.webp`;
         request
             .get(result7.toString())
-            .pipe(fs.createWriteStream(path))
-        result7 = path;
+            .pipe(fs.createWriteStream(pathStart))
+        result7 = pathNext;
     }
 
     //8//
@@ -238,12 +252,14 @@ request(URL, (err, res, body) => {
     if (result8 === null || Boolean(result8) === false) {
         console.log(err)
     } else if (result8.trim().slice(0, 4) === 'http') {
-        let name = result8.trim().slice(47, -4);
-        let path = `/home/dima/parser/test/${name}.webp`;
+        let nameNext = result8.trim().slice(47, -4);
+        let name = result8.trim().slice(47);
+        let pathStart = `/home/dima/parser/upload/${name}`;
+        let pathNext = `/home/dima/parser/test/${nameNext}.webp`;
         request
             .get(result8.toString())
-            .pipe(fs.createWriteStream(path))
-        result8 = path;
+            .pipe(fs.createWriteStream(pathStart))
+        result8 = pathNext;
     }
 
     //9//
@@ -265,12 +281,14 @@ request(URL, (err, res, body) => {
     if (result9 === null || Boolean(result9) === false) {
         console.log(err)
     } else if (result9.trim().slice(0, 4) === 'http') {
-        let name = result9.trim().slice(47, -4);
-        let path = `/home/dima/parser/test/${name}.webp`;
+        let nameNext = result9.trim().slice(47, -4);
+        let name = result9.trim().slice(47);
+        let pathStart = `/home/dima/parser/upload/${name}`;
+        let pathNext = `/home/dima/parser/test/${nameNext}.webp`;
         request
             .get(result9.toString())
-            .pipe(fs.createWriteStream(path))
-        result9 = path;
+            .pipe(fs.createWriteStream(pathStart))
+        result9 = pathNext;
     }
 
     //10//
@@ -292,12 +310,14 @@ request(URL, (err, res, body) => {
     if (result10 === null || Boolean(result10) === false) {
         console.log(err)
     } else if (result10.trim().slice(0, 4) === 'http') {
-        let name = result10.trim().slice(47, -4);
-        let path = `/home/dima/parser/test/${name}.webp`;
+        let nameNext = result10.trim().slice(47, -4);
+        let name = result10.trim().slice(47);
+        let pathStart = `/home/dima/parser/upload/${name}`;
+        let pathNext = `/home/dima/parser/test/${nameNext}.webp`;
         request
             .get(result10.toString())
-            .pipe(fs.createWriteStream(path))
-        result10 = path;
+            .pipe(fs.createWriteStream(pathStart))
+        result10 = pathNext;
     }
 
     let images;
@@ -369,12 +389,14 @@ request(URL, (err, res, body) => {
     if (result11 === null || Boolean(result11) === false) {
         console.log(err)
     } else if (result11.trim().slice(0, 4) === 'http') {
-        let name = result11.trim().slice(47, -4);
-        let path = `/home/dima/parser/test/${name}.webp`;
+        let nameNext = result11.trim().slice(47, -4);
+        let name = result11.trim().slice(47);
+        let pathStart = `/home/dima/parser/upload/${name}`;
+        let pathNext = `/home/dima/parser/test/${nameNext}.webp`;
         request
             .get(result11.toString())
-            .pipe(fs.createWriteStream(path))
-        result11 = path;
+            .pipe(fs.createWriteStream(pathStart))
+        result11 = pathNext;
     }
 
     //2//
@@ -396,12 +418,14 @@ request(URL, (err, res, body) => {
     if (result12 === null || Boolean(result12) === false) {
         console.log(err)
     } else if (result12.trim().slice(0, 4) === 'http') {
-        let name = result12.trim().slice(47, -4);
-        let path = `/home/dima/parser/test/${name}.webp`;
+        let nameNext = result12.trim().slice(47, -4);
+        let name = result12.trim().slice(47);
+        let pathStart = `/home/dima/parser/upload/${name}`;
+        let pathNext = `/home/dima/parser/test/${nameNext}.webp`;
         request
             .get(result12.toString())
-            .pipe(fs.createWriteStream(path))
-        result12 = path;
+            .pipe(fs.createWriteStream(pathStart))
+        result12 = pathNext;
     }
 
     //3//
@@ -423,12 +447,14 @@ request(URL, (err, res, body) => {
     if (result13 === null || Boolean(result13) === false) {
         console.log(err)
     } else if (result13.trim().slice(0, 4) === 'http') {
-        let name = result13.trim().slice(47, -4);
-        let path = `/home/dima/parser/test/${name}.webp`;
+        let nameNext = result13.trim().slice(47, -4);
+        let name = result13.trim().slice(47);
+        let pathStart = `/home/dima/parser/upload/${name}`;
+        let pathNext = `/home/dima/parser/test/${nameNext}.webp`;
         request
             .get(result13.toString())
-            .pipe(fs.createWriteStream(path))
-        result13 = path;
+            .pipe(fs.createWriteStream(pathStart))
+        result13 = pathNext;
     }
 
 
@@ -451,12 +477,14 @@ request(URL, (err, res, body) => {
     if (result14 === null || Boolean(result14) === false) {
         console.log(err)
     } else if (result14.trim().slice(0, 4) === 'http') {
-        let name = result14.trim().slice(47, -4);
-        let path = `/home/dima/parser/test/${name}.webp`;
+        let nameNext = result14.trim().slice(47, -4);
+        let name = result14.trim().slice(47);
+        let pathStart = `/home/dima/parser/upload/${name}`;
+        let pathNext = `/home/dima/parser/test/${nameNext}.webp`;
         request
             .get(result14.toString())
-            .pipe(fs.createWriteStream(path))
-        result14 = path;
+            .pipe(fs.createWriteStream(pathStart))
+        result14 = pathNext;
     }
 
     //5//
@@ -478,12 +506,14 @@ request(URL, (err, res, body) => {
     if (result15 === null || Boolean(result15) === false) {
         console.log(err)
     } else if (result15.trim().slice(0, 4) === 'http') {
-        let name = result15.trim().slice(47, -4);
-        let path = `/home/dima/parser/test/${name}.webp`;
+        let nameNext = result15.trim().slice(47, -4);
+        let name = result15.trim().slice(47);
+        let pathStart = `/home/dima/parser/upload/${name}`;
+        let pathNext = `/home/dima/parser/test/${nameNext}.webp`;
         request
             .get(result15.toString())
-            .pipe(fs.createWriteStream(path))
-        result15 = path;
+            .pipe(fs.createWriteStream(pathStart))
+        result15 = pathNext;
     }
 
     //6//
@@ -505,12 +535,14 @@ request(URL, (err, res, body) => {
     if (result16 === null || Boolean(result16) === false) {
         console.log(err)
     } else if (result16.trim().slice(0, 4) === 'http') {
-        let name = result16.trim().slice(47, -4);
-        let path = `/home/dima/parser/test/${name}.webp`;;
+        let nameNext = result16.trim().slice(47, -4);
+        let name = result16.trim().slice(47);
+        let pathStart = `/home/dima/parser/upload/${name}`;
+        let pathNext = `/home/dima/parser/test/${nameNext}.webp`;
         request
             .get(result16.toString())
-            .pipe(fs.createWriteStream(path))
-        result16 = path;
+            .pipe(fs.createWriteStream(pathStart))
+        result16 = pathNext;
     }
 
     //7//
@@ -532,12 +564,14 @@ request(URL, (err, res, body) => {
     if (result17 === null || Boolean(result17) === false) {
         console.log(err)
     } else if (result17.trim().slice(0, 4) === 'http') {
-        let name = result17.trim().slice(47, -4);
-        let path = `/home/dima/parser/test/${name}.webp`;
+        let nameNext = result17.trim().slice(47, -4);
+        let name = result17.trim().slice(47);
+        let pathStart = `/home/dima/parser/upload/${name}`;
+        let pathNext = `/home/dima/parser/test/${nameNext}.webp`;
         request
             .get(result17.toString())
-            .pipe(fs.createWriteStream(path))
-        result17 = path;
+            .pipe(fs.createWriteStream(pathStart))
+        result17 = pathNext;
     }
 
     //8//
@@ -560,12 +594,14 @@ request(URL, (err, res, body) => {
     if (result18 === null || Boolean(result18) === false) {
         console.log(err)
     } else if (result18.trim().slice(0, 4) === 'http') {
-        let name = result18.trim().slice(47, -4);
-        let path = `/home/dima/parser/test/${name}.webp`;
+        let nameNext = result18.trim().slice(47, -4);
+        let name = result18.trim().slice(47);
+        let pathStart = `/home/dima/parser/upload/${name}`;
+        let pathNext = `/home/dima/parser/test/${nameNext}.webp`;
         request
             .get(result18.toString())
-            .pipe(fs.createWriteStream(path))
-        result18 = path;
+            .pipe(fs.createWriteStream(pathStart))
+        result18 = pathNext;
     }
 
     //9//
@@ -587,12 +623,14 @@ request(URL, (err, res, body) => {
     if (result19 === null || Boolean(result19) === false) {
         console.log(err)
     } else if (result19.trim().slice(0, 4) === 'http') {
-        let name = result19.trim().slice(47, -4);
-        let path = `/home/dima/parser/test/${name}.webp`;
+        let nameNext = result19.trim().slice(47, -4);
+        let name = result19.trim().slice(47);
+        let pathStart = `/home/dima/parser/upload/${name}`;
+        let pathNext = `/home/dima/parser/test/${nameNext}.webp`;
         request
             .get(result19.toString())
-            .pipe(fs.createWriteStream(path))
-        result19 = path;
+            .pipe(fs.createWriteStream(pathStart))
+        result19 = pathNext;
     }
 
     //10//
@@ -614,12 +652,14 @@ request(URL, (err, res, body) => {
     if (result20 === null || Boolean(result20) === false) {
         console.log(err)
     } else if (result20.trim().slice(0, 4) === 'http') {
-        let name = result20.trim().slice(47, -4);
-        let path = `/home/dima/parser/test/${name}.webp`;;
+        let nameNext = result20.trim().slice(47, -4);
+        let name = result20.trim().slice(47);
+        let pathStart = `/home/dima/parser/upload/${name}`;
+        let pathNext = `/home/dima/parser/test/${nameNext}.webp`;
         request
             .get(result20.toString())
-            .pipe(fs.createWriteStream(path))
-        result20 = path;
+            .pipe(fs.createWriteStream(pathStart))
+        result20 = pathNext;
     }
 
 
@@ -645,12 +685,14 @@ request(URL, (err, res, body) => {
     if (result21 === null || Boolean(result21) === false) {
         console.log(err)
     } else if (result21.trim().slice(0, 4) === 'http') {
-        let name = result21.trim().slice(47, -4);
-        let path = `/home/dima/parser/test/${name}.webp`;
+        let nameNext = result21.trim().slice(47, -4);
+        let name = result21.trim().slice(47);
+        let pathStart = `/home/dima/parser/upload/${name}`;
+        let pathNext = `/home/dima/parser/test/${nameNext}.webp`;
         request
             .get(result21.toString())
-            .pipe(fs.createWriteStream(path))
-        result21 = path;
+            .pipe(fs.createWriteStream(pathStart))
+        result21 = pathNext;
     }
 
     //2//
@@ -672,12 +714,14 @@ request(URL, (err, res, body) => {
     if (result22 === null || Boolean(result22) === false) {
         console.log(err)
     } else if (result22.trim().slice(0, 4) === 'http') {
-        let name = result22.trim().slice(47, -4);
-        let path = `/home/dima/parser/test/${name}.webp`;
+        let nameNext = result22.trim().slice(47, -4);
+        let name = result22.trim().slice(47);
+        let pathStart = `/home/dima/parser/upload/${name}`;
+        let pathNext = `/home/dima/parser/test/${nameNext}.webp`;
         request
             .get(result22.toString())
-            .pipe(fs.createWriteStream(path))
-        result22 = path;
+            .pipe(fs.createWriteStream(pathStart))
+        result22 = pathNext;
     }
 
     //3//
@@ -699,12 +743,14 @@ request(URL, (err, res, body) => {
     if (result23 === null || Boolean(result23) === false) {
         console.log(err)
     } else if (result23.trim().slice(0, 4) === 'http') {
-        let name = result23.trim().slice(47, -4);
-        let path = `/home/dima/parser/test/${name}.webp`;
+        let nameNext = result23.trim().slice(47, -4);
+        let name = result23.trim().slice(47);
+        let pathStart = `/home/dima/parser/upload/${name}`;
+        let pathNext = `/home/dima/parser/test/${nameNext}.webp`;
         request
             .get(result23.toString())
-            .pipe(fs.createWriteStream(path))
-        result23 = path;
+            .pipe(fs.createWriteStream(pathStart))
+        result23 = pathNext;
     }
 
     //4//
@@ -726,12 +772,14 @@ request(URL, (err, res, body) => {
     if (result24 === null || Boolean(result24) === false) {
         console.log(err)
     } else if (result24.trim().slice(0, 4) === 'http') {
-        let name = result24.trim().slice(47, -4);
-        let path = `/home/dima/parser/test/${name}.webp`;
+        let nameNext = result24.trim().slice(47, -4);
+        let name = result24.trim().slice(47);
+        let pathStart = `/home/dima/parser/upload/${name}`;
+        let pathNext = `/home/dima/parser/test/${nameNext}.webp`;
         request
             .get(result24.toString())
-            .pipe(fs.createWriteStream(path))
-        result24 = path;
+            .pipe(fs.createWriteStream(pathStart))
+        result24 = pathNext;
     }
 
     //5//
@@ -753,12 +801,14 @@ request(URL, (err, res, body) => {
     if (result25 === null || Boolean(result25) === false) {
         console.log(err)
     } else if (result25.trim().slice(0, 4) === 'http') {
-        let name = result25.trim().slice(47, -4);
-        let path = `/home/dima/parser/test/${name}.webp`;
+        let nameNext = result25.trim().slice(47, -4);
+        let name = result25.trim().slice(47);
+        let pathStart = `/home/dima/parser/upload/${name}`;
+        let pathNext = `/home/dima/parser/test/${nameNext}.webp`;
         request
             .get(result25.toString())
-            .pipe(fs.createWriteStream(path))
-        result25 = path;
+            .pipe(fs.createWriteStream(pathStart))
+        result25 = pathNext;
     }
 
     //6//
@@ -780,12 +830,14 @@ request(URL, (err, res, body) => {
     if (result26 === null || Boolean(result26) === false) {
         console.log(err)
     } else if (result26.trim().slice(0, 4) === 'http') {
-        let name = result26.trim().slice(47, -4);
-        let path = `/home/dima/parser/test/${name}.webp`;
+        let nameNext = result26.trim().slice(47, -4);
+        let name = result26.trim().slice(47);
+        let pathStart = `/home/dima/parser/upload/${name}`;
+        let pathNext = `/home/dima/parser/test/${nameNext}.webp`;
         request
             .get(result26.toString())
-            .pipe(fs.createWriteStream(path))
-        result26 = path;
+            .pipe(fs.createWriteStream(pathStart))
+        result26 = pathNext;
     }
 
     //7//
@@ -807,12 +859,14 @@ request(URL, (err, res, body) => {
     if (result27 === null || Boolean(result27) === false) {
         console.log(err)
     } else if (result27.trim().slice(0, 4) === 'http') {
-        let name = result27.trim().slice(47, -4);
-        let path = `/home/dima/parser/test/${name}.webp`;
+        let nameNext = result27.trim().slice(47, -4);
+        let name = result27.trim().slice(47);
+        let pathStart = `/home/dima/parser/upload/${name}`;
+        let pathNext = `/home/dima/parser/test/${nameNext}.webp`;
         request
             .get(result27.toString())
-            .pipe(fs.createWriteStream(path))
-        result27 = path;
+            .pipe(fs.createWriteStream(pathStart))
+        result27 = pathNext;
     }
 
     //8//
@@ -834,12 +888,14 @@ request(URL, (err, res, body) => {
     if (result28 === null || Boolean(result28) === false) {
         console.log(err)
     } else if (result28.trim().slice(0, 4) === 'http') {
-        let name = result28.trim().slice(47, -4);
-        let path = `/home/dima/parser/test/${name}.webp`;
+        let nameNext = result28.trim().slice(47, -4);
+        let name = result28.trim().slice(47);
+        let pathStart = `/home/dima/parser/upload/${name}`;
+        let pathNext = `/home/dima/parser/test/${nameNext}.webp`;
         request
             .get(result28.toString())
-            .pipe(fs.createWriteStream(path))
-        result28 = path;
+            .pipe(fs.createWriteStream(pathStart))
+        result28 = pathNext;
     }
 
     //9//
@@ -861,12 +917,14 @@ request(URL, (err, res, body) => {
     if (result29 === null || Boolean(result29) === false) {
         console.log(err)
     } else if (result29.trim().slice(0, 4) === 'http') {
-        let name = result29.trim().slice(47, -4);
-        let path = `/home/dima/parser/test/${name}.webp`;
+        let nameNext = result29.trim().slice(47, -4);
+        let name = result29.trim().slice(47);
+        let pathStart = `/home/dima/parser/upload/${name}`;
+        let pathNext = `/home/dima/parser/test/${nameNext}.webp`;
         request
             .get(result29.toString())
-            .pipe(fs.createWriteStream(path))
-        result29 = path;
+            .pipe(fs.createWriteStream(pathStart))
+        result29 = pathNext;
     }
 
     //10//
@@ -888,12 +946,14 @@ request(URL, (err, res, body) => {
     if (result30 === null || Boolean(result30) === false) {
         console.log(err)
     } else if (result30.trim().slice(0, 4) === 'http') {
-        let name = result30.trim().slice(47, -4);
-        let path = `/home/dima/parser/test/${name}.webp`;
+        let nameNext = result30.trim().slice(47, -4);
+        let name = result30.trim().slice(47);
+        let pathStart = `/home/dima/parser/upload/${name}`;
+        let pathNext = `/home/dima/parser/test/${nameNext}.webp`;
         request
             .get(result30.toString())
-            .pipe(fs.createWriteStream(path))
-        result30 = path;
+            .pipe(fs.createWriteStream(pathStart))
+        result30 = pathNext;
     }
 
     //Fourth block (tzt)
@@ -918,12 +978,14 @@ request(URL, (err, res, body) => {
     if (result31 === null || Boolean(result31) === false) {
         console.log(err)
     } else if (result31.trim().slice(0, 4) === 'http') {
-        let name = result31.trim().slice(47, -4);
-        let path = `/home/dima/parser/test/${name}.webp`;
+        let nameNext = result31.trim().slice(47, -4);
+        let name = result31.trim().slice(47);
+        let pathStart = `/home/dima/parser/upload/${name}`;
+        let pathNext = `/home/dima/parser/test/${nameNext}.webp`;
         request
             .get(result31.toString())
-            .pipe(fs.createWriteStream(path))
-        result31 = path;
+            .pipe(fs.createWriteStream(pathStart))
+        result31 = pathNext;
     }
 
     //2//
@@ -945,12 +1007,14 @@ request(URL, (err, res, body) => {
     if (result32 === null || Boolean(result32) === false) {
         console.log(err)
     } else if (result32.trim().slice(0, 4) === 'http') {
-        let name = result32.trim().slice(47, -4);
-        let path = `/home/dima/parser/test/${name}.webp`;
+        let nameNext = result32.trim().slice(47, -4);
+        let name = result32.trim().slice(47);
+        let pathStart = `/home/dima/parser/upload/${name}`;
+        let pathNext = `/home/dima/parser/test/${nameNext}.webp`;
         request
             .get(result32.toString())
-            .pipe(fs.createWriteStream(path))
-        result32 = path;
+            .pipe(fs.createWriteStream(pathStart))
+        result32 = pathNext;
     }
 
     //3//
@@ -972,12 +1036,14 @@ request(URL, (err, res, body) => {
     if (result33 === null || Boolean(result33) === false) {
         console.log(err)
     } else if (result33.trim().slice(0, 4) === 'http') {
-        let name = result33.trim().slice(47, -4);
-        let path = `/home/dima/parser/test/${name}.webp`;
+        let nameNext = result33.trim().slice(47, -4);
+        let name = result33.trim().slice(47);
+        let pathStart = `/home/dima/parser/upload/${name}`;
+        let pathNext = `/home/dima/parser/test/${nameNext}.webp`;
         request
             .get(result33.toString())
-            .pipe(fs.createWriteStream(path))
-        result33 = path;
+            .pipe(fs.createWriteStream(pathStart))
+        result33 = pathNext;
     }
 
     //4//
@@ -999,12 +1065,14 @@ request(URL, (err, res, body) => {
     if (result34 === null || Boolean(result34) === false) {
         console.log(err)
     } else if (result34.trim().slice(0, 4) === 'http') {
-        let name = result34.trim().slice(47, -4);
-        let path = `/home/dima/parser/test/${name}.webp`;
+        let nameNext = result34.trim().slice(47, -4);
+        let name = result34.trim().slice(47);
+        let pathStart = `/home/dima/parser/upload/${name}`;
+        let pathNext = `/home/dima/parser/test/${nameNext}.webp`;
         request
             .get(result34.toString())
-            .pipe(fs.createWriteStream(path))
-        result34 = path;
+            .pipe(fs.createWriteStream(pathStart))
+        result34 = pathNext;
     }
 
     //5//
@@ -1026,12 +1094,14 @@ request(URL, (err, res, body) => {
     if (result35 === null || Boolean(result35) === false) {
         console.log(err)
     } else if (result35.trim().slice(0, 4) === 'http') {
-        let name = result35.trim().slice(47, -4);
-        let path = `/home/dima/parser/test/${name}.webp`;
+        let nameNext = result35.trim().slice(47, -4);
+        let name = result35.trim().slice(47);
+        let pathStart = `/home/dima/parser/upload/${name}`;
+        let pathNext = `/home/dima/parser/test/${nameNext}.webp`;
         request
             .get(result35.toString())
-            .pipe(fs.createWriteStream(path))
-        result35 = path;
+            .pipe(fs.createWriteStream(pathStart))
+        result35 = pathNext;
     }
 
     //6//
@@ -1053,12 +1123,14 @@ request(URL, (err, res, body) => {
     if (result36 === null || Boolean(result36) === false) {
         console.log(err)
     } else if (result36.trim().slice(0, 4) === 'http') {
-        let name = result36.trim().slice(47, -4);
-        let path = `/home/dima/parser/test/${name}.webp`;
+        let nameNext = result36.trim().slice(47, -4);
+        let name = result36.trim().slice(47);
+        let pathStart = `/home/dima/parser/upload/${name}`;
+        let pathNext = `/home/dima/parser/test/${nameNext}.webp`;
         request
             .get(result36.toString())
-            .pipe(fs.createWriteStream(path))
-        result36 = path;
+            .pipe(fs.createWriteStream(pathStart))
+        result36 = pathNext;
     }
 
     //7//
@@ -1080,12 +1152,14 @@ request(URL, (err, res, body) => {
     if (result37 === null || Boolean(result37) === false) {
         console.log(err)
     } else if (result37.trim().slice(0, 4) === 'http') {
-        let name = result37.trim().slice(47, -4);
-        let path = `/home/dima/parser/test/${name}.webp`;;
+        let nameNext = result37.trim().slice(47, -4);
+        let name = result37.trim().slice(47);
+        let pathStart = `/home/dima/parser/upload/${name}`;
+        let pathNext = `/home/dima/parser/test/${nameNext}.webp`;
         request
             .get(result37.toString())
-            .pipe(fs.createWriteStream(path))
-        result37 = path;
+            .pipe(fs.createWriteStream(pathStart))
+        result37 = pathNext;
     }
 
     //8//
@@ -1107,12 +1181,14 @@ request(URL, (err, res, body) => {
     if (result38 === null || Boolean(result38) === false) {
         console.log(err)
     } else if (result38.trim().slice(0, 4) === 'http') {
-        let name = result38.trim().slice(47, -4);
-        let path = `/home/dima/parser/test/${name}.webp`;
+        let nameNext = result38.trim().slice(47, -4);
+        let name = result38.trim().slice(47);
+        let pathStart = `/home/dima/parser/upload/${name}`;
+        let pathNext = `/home/dima/parser/test/${nameNext}.webp`;
         request
             .get(result38.toString())
-            .pipe(fs.createWriteStream(path))
-        result38 = path;
+            .pipe(fs.createWriteStream(pathStart))
+        result38 = pathNext;
     }
 
     //9//
@@ -1134,12 +1210,14 @@ request(URL, (err, res, body) => {
     if (result39 === null || Boolean(result39) === false) {
         console.log(err)
     } else if (result39.trim().slice(0, 4) === 'http') {
-        let name = result39.trim().slice(47, -4);
-        let path = `/home/dima/parser/test/${name}.webp`;
+        let nameNext = result39.trim().slice(47, -4);
+        let name = result39.trim().slice(47);
+        let pathStart = `/home/dima/parser/upload/${name}`;
+        let pathNext = `/home/dima/parser/test/${nameNext}.webp`;
         request
             .get(result39.toString())
-            .pipe(fs.createWriteStream(path))
-        result39 = path;
+            .pipe(fs.createWriteStream(pathStart))
+        result39 = pathNext;
     }
 
     //10//
@@ -1161,12 +1239,14 @@ request(URL, (err, res, body) => {
     if (result40 === null || Boolean(result40) === false) {
         console.log(err)
     } else if (result40.trim().slice(0, 4) === 'http') {
-        let name = result40.trim().slice(47, -4);
-        let path = `/home/dima/parser/test/${name}.webp`;
+        let nameNext = result40.trim().slice(47, -4);
+        let name = result40.trim().slice(47);
+        let pathStart = `/home/dima/parser/upload/${name}`;
+        let pathNext = `/home/dima/parser/test/${nameNext}.webp`;
         request
             .get(result40.toString())
-            .pipe(fs.createWriteStream(path))
-        result40 = path;
+            .pipe(fs.createWriteStream(pathStart))
+        result40 = pathNext;
     }
 
     //Fifth block (tnt)
@@ -1191,12 +1271,14 @@ request(URL, (err, res, body) => {
     if (result41 === null || Boolean(result41) === false) {
         console.log(err)
     } else if (result41.trim().slice(0, 4) === 'http') {
-        let name = result41.trim().slice(47, -4);
-        let path = `/home/dima/parser/test/${name}.webp`;;
+        let nameNext = result41.trim().slice(47, -4);
+        let name = result41.trim().slice(47);
+        let pathStart = `/home/dima/parser/upload/${name}`;
+        let pathNext = `/home/dima/parser/test/${nameNext}.webp`;
         request
             .get(result41.toString())
-            .pipe(fs.createWriteStream(path))
-        result41 = path;
+            .pipe(fs.createWriteStream(pathStart))
+        result41 = pathNext;
     }
 
     //2//
@@ -1218,12 +1300,14 @@ request(URL, (err, res, body) => {
     if (result42 === null || Boolean(result42) === false) {
         console.log(err)
     } else if (result42.trim().slice(0, 4) === 'http') {
-        let name = result42.trim().slice(47, -4);
-        let path = `/home/dima/parser/test/${name}.webp`;
+        let nameNext = result42.trim().slice(47, -4);
+        let name = result42.trim().slice(47);
+        let pathStart = `/home/dima/parser/upload/${name}`;
+        let pathNext = `/home/dima/parser/test/${nameNext}.webp`;
         request
             .get(result42.toString())
-            .pipe(fs.createWriteStream(path))
-        result42 = path;
+            .pipe(fs.createWriteStream(pathStart))
+        result42 = pathNext;
     }
 
     //3//
@@ -1245,12 +1329,14 @@ request(URL, (err, res, body) => {
     if (result43 === null || Boolean(result43) === false) {
         console.log(err)
     } else if (result43.trim().slice(0, 4) === 'http') {
-        let name = result43.trim().slice(47, -4);
-        let path = `/home/dima/parser/test/${name}.webp`;
+        let nameNext = result43.trim().slice(47, -4);
+        let name = result43.trim().slice(47);
+        let pathStart = `/home/dima/parser/upload/${name}`;
+        let pathNext = `/home/dima/parser/test/${nameNext}.webp`;
         request
             .get(result43.toString())
-            .pipe(fs.createWriteStream(path))
-        result43 = path;
+            .pipe(fs.createWriteStream(pathStart))
+        result43 = pathNext;
     }
 
     //4//
@@ -1272,12 +1358,14 @@ request(URL, (err, res, body) => {
     if (result44 === null || Boolean(result44) === false) {
         console.log(err)
     } else if (result44.trim().slice(0, 4) === 'http') {
-        let name = result44.trim().slice(47, -4);
-        let path = `/home/dima/parser/test/${name}.webp`;
+        let nameNext = result44.trim().slice(47, -4);
+        let name = result44.trim().slice(47);
+        let pathStart = `/home/dima/parser/upload/${name}`;
+        let pathNext = `/home/dima/parser/test/${nameNext}.webp`;
         request
             .get(result44.toString())
-            .pipe(fs.createWriteStream(path))
-        result44 = path;
+            .pipe(fs.createWriteStream(pathStart))
+        result44 = pathNext;
     }
 
     //5//
@@ -1299,12 +1387,14 @@ request(URL, (err, res, body) => {
     if (result45 === null || Boolean(result45) === false) {
         console.log(err)
     } else if (result45.trim().slice(0, 4) === 'http') {
-        let name = result45.trim().slice(47, -4);
-        let path = `/home/dima/parser/test/${name}.webp`;
+        let nameNext = result45.trim().slice(47, -4);
+        let name = result45.trim().slice(47);
+        let pathStart = `/home/dima/parser/upload/${name}`;
+        let pathNext = `/home/dima/parser/test/${nameNext}.webp`;
         request
             .get(result45.toString())
-            .pipe(fs.createWriteStream(path))
-        result45 = path;
+            .pipe(fs.createWriteStream(pathStart))
+        result45 = pathNext;
     }
 
     //6//
@@ -1326,12 +1416,14 @@ request(URL, (err, res, body) => {
     if (result46 === null || Boolean(result46) === false) {
         console.log(err)
     } else if (result46.trim().slice(0, 4) === 'http') {
-        let name = result46.trim().slice(47, -4);
-        let path = `/home/dima/parser/test/${name}.webp`;
+        let nameNext = result46.trim().slice(47, -4);
+        let name = result46.trim().slice(47);
+        let pathStart = `/home/dima/parser/upload/${name}`;
+        let pathNext = `/home/dima/parser/test/${nameNext}.webp`;
         request
             .get(result46.toString())
-            .pipe(fs.createWriteStream(path))
-        result46 = path;
+            .pipe(fs.createWriteStream(pathStart))
+        result46 = pathNext;
     }
 
     //7//
@@ -1353,12 +1445,14 @@ request(URL, (err, res, body) => {
     if (result47 === null || Boolean(result47) === false) {
         console.log(err)
     } else if (result47.trim().slice(0, 4) === 'http') {
-        let name = result47.trim().slice(47, -4);
-        let path = `/home/dima/parser/test/${name}.webp`;
+        let nameNext = result47.trim().slice(47, -4);
+        let name = result47.trim().slice(47);
+        let pathStart = `/home/dima/parser/upload/${name}`;
+        let pathNext = `/home/dima/parser/test/${nameNext}.webp`;
         request
             .get(result47.toString())
-            .pipe(fs.createWriteStream(path))
-        result47 = path;
+            .pipe(fs.createWriteStream(pathStart))
+        result47 = pathNext;
     }
 
     //8//
@@ -1380,12 +1474,14 @@ request(URL, (err, res, body) => {
     if (result48 === null || Boolean(result48) === false) {
         console.log(err)
     } else if (result48.trim().slice(0, 4) === 'http') {
-        let name = result48.trim().slice(47, -4);
-        let path = `/home/dima/parser/test/${name}.webp`;
+        let nameNext = result48.trim().slice(47, -4);
+        let name = result48.trim().slice(47);
+        let pathStart = `/home/dima/parser/upload/${name}`;
+        let pathNext = `/home/dima/parser/test/${nameNext}.webp`;
         request
             .get(result48.toString())
-            .pipe(fs.createWriteStream(path))
-        result48 = path;
+            .pipe(fs.createWriteStream(pathStart))
+        result48 = pathNext;
     }
 
     //9//
@@ -1407,12 +1503,14 @@ request(URL, (err, res, body) => {
     if (result49 === null || Boolean(result49) === false) {
         console.log(err)
     } else if (result49.trim().slice(0, 4) === 'http') {
-        let name = result49.trim().slice(47, -4);
-        let path = `/home/dima/parser/test/${name}.webp`;
+        let nameNext = result49.trim().slice(47, -4);
+        let name = result49.trim().slice(47);
+        let pathStart = `/home/dima/parser/upload/${name}`;
+        let pathNext = `/home/dima/parser/test/${nameNext}.webp`;
         request
             .get(result49.toString())
-            .pipe(fs.createWriteStream(path))
-        result49 = path;
+            .pipe(fs.createWriteStream(pathStart))
+        result49 = pathNext;
     }
 
     //10//
@@ -1434,12 +1532,14 @@ request(URL, (err, res, body) => {
     if (result50 === null || Boolean(result50) === false) {
         console.log(err)
     } else if (result50.trim().slice(0, 4) === 'http') {
-        let name = result50.trim().slice(47, -4);
-        let path = `/home/dima/parser/test/${name}.webp`;
+        let nameNext = result50.trim().slice(47, -4);
+        let name = result50.trim().slice(47);
+        let pathStart = `/home/dima/parser/upload/${name}`;
+        let pathNext = `/home/dima/parser/test/${nameNext}.webp`;
         request
             .get(result50.toString())
-            .pipe(fs.createWriteStream(path))
-        result50 = path;
+            .pipe(fs.createWriteStream(pathStart))
+        result50 = pathNext;
     }
 
     //Sixth block (tvt)
@@ -1464,12 +1564,14 @@ request(URL, (err, res, body) => {
     if (result51 === null || Boolean(result51) === false) {
         console.log(err)
     } else if (result51.trim().slice(0, 4) === 'http') {
-        let name = result51.trim().slice(47, -4);
-        let path = `/home/dima/parser/test/${name}.webp`;
+        let nameNext = result51.trim().slice(47, -4);
+        let name = result51.trim().slice(47);
+        let pathStart = `/home/dima/parser/upload/${name}`;
+        let pathNext = `/home/dima/parser/test/${nameNext}.webp`;
         request
             .get(result51.toString())
-            .pipe(fs.createWriteStream(path))
-        result51 = path;
+            .pipe(fs.createWriteStream(pathStart))
+        result51 = pathNext;
     }
 
     //2//
@@ -1491,12 +1593,14 @@ request(URL, (err, res, body) => {
     if (result52 === null || Boolean(result52) === false) {
         console.log(err)
     } else if (result52.trim().slice(0, 4) === 'http') {
-        let name = result52.trim().slice(47, -4);
-        let path = `/home/dima/parser/test/${name}.webp`;
+        let nameNext = result52.trim().slice(47, -4);
+        let name = result52.trim().slice(47);
+        let pathStart = `/home/dima/parser/upload/${name}`;
+        let pathNext = `/home/dima/parser/test/${nameNext}.webp`;
         request
             .get(result52.toString())
-            .pipe(fs.createWriteStream(path))
-        result52 = path;
+            .pipe(fs.createWriteStream(pathStart))
+        result52 = pathNext;
     }
 
     //3//
@@ -1518,12 +1622,14 @@ request(URL, (err, res, body) => {
     if (result53 === null || Boolean(result53) === false) {
         console.log(err)
     } else if (result53.trim().slice(0, 4) === 'http') {
-        let name = result53.trim().slice(47, -4);
-        let path = `/home/dima/parser/test/${name}.webp`;
+        let nameNext = result53.trim().slice(47, -4);
+        let name = result53.trim().slice(47);
+        let pathStart = `/home/dima/parser/upload/${name}`;
+        let pathNext = `/home/dima/parser/test/${nameNext}.webp`;
         request
             .get(result53.toString())
-            .pipe(fs.createWriteStream(path))
-        result53 = path;
+            .pipe(fs.createWriteStream(pathStart))
+        result53 = pathNext;
     }
 
     //4//
@@ -1545,12 +1651,14 @@ request(URL, (err, res, body) => {
     if (result54 === null || Boolean(result54) === false) {
         console.log(err)
     } else if (result54.trim().slice(0, 4) === 'http') {
-        let name = result54.trim().slice(47, -4);
-        let path = `/home/dima/parser/test/${name}.webp`;
+        let nameNext = result54.trim().slice(47, -4);
+        let name = result54.trim().slice(47);
+        let pathStart = `/home/dima/parser/upload/${name}`;
+        let pathNext = `/home/dima/parser/test/${nameNext}.webp`;
         request
             .get(result54.toString())
-            .pipe(fs.createWriteStream(path))
-        result54 = path;
+            .pipe(fs.createWriteStream(pathStart))
+        result54 = pathNext;
     }
 
     //5//
@@ -1572,12 +1680,14 @@ request(URL, (err, res, body) => {
     if (result55 === null || Boolean(result55) === false) {
         console.log(err)
     } else if (result55.trim().slice(0, 4) === 'http') {
-        let name = result55.trim().slice(47, -4);
-        let path = `/home/dima/parser/test/${name}.webp`;
+        let nameNext = result55.trim().slice(47, -4);
+        let name = result55.trim().slice(47);
+        let pathStart = `/home/dima/parser/upload/${name}`;
+        let pathNext = `/home/dima/parser/test/${nameNext}.webp`;
         request
             .get(result55.toString())
-            .pipe(fs.createWriteStream(path))
-        result55 = path;
+            .pipe(fs.createWriteStream(pathStart))
+        result55 = pathNext;
     }
 
     //6//
@@ -1599,12 +1709,14 @@ request(URL, (err, res, body) => {
     if (result56 === null || Boolean(result56) === false) {
         console.log(err)
     } else if (result56.trim().slice(0, 4) === 'http') {
-        let name = result56.trim().slice(47, -4);
-        let path = `/home/dima/parser/test/${name}.webp`;
+        let nameNext = result56.trim().slice(47, -4);
+        let name = result56.trim().slice(47);
+        let pathStart = `/home/dima/parser/upload/${name}`;
+        let pathNext = `/home/dima/parser/test/${nameNext}.webp`;
         request
             .get(result56.toString())
-            .pipe(fs.createWriteStream(path))
-        result56 = path;
+            .pipe(fs.createWriteStream(pathStart))
+        result56 = pathNext;
     }
 
     //7//
@@ -1626,12 +1738,14 @@ request(URL, (err, res, body) => {
     if (result57 === null || Boolean(result57) === false) {
         console.log(err)
     } else if (result57.trim().slice(0, 4) === 'http') {
-        let name = result57.trim().slice(47, -4);
-        let path = `/home/dima/parser/test/${name}.webp`;
+        let nameNext = result57.trim().slice(47, -4);
+        let name = result57.trim().slice(47);
+        let pathStart = `/home/dima/parser/upload/${name}`;
+        let pathNext = `/home/dima/parser/test/${nameNext}.webp`;
         request
             .get(result57.toString())
-            .pipe(fs.createWriteStream(path))
-        result57 = path;
+            .pipe(fs.createWriteStream(pathStart))
+        result57 = pathNext;
     }
 
     //8//
@@ -1653,12 +1767,14 @@ request(URL, (err, res, body) => {
     if (result58 === null || Boolean(result58) === false) {
         console.log(err)
     } else if (result58.trim().slice(0, 4) === 'http') {
-        let name = result58.trim().slice(47, -4);
-        let path = `/home/dima/parser/test/${name}.webp`;
+        let nameNext = result58.trim().slice(47, -4);
+        let name = result58.trim().slice(47);
+        let pathStart = `/home/dima/parser/upload/${name}`;
+        let pathNext = `/home/dima/parser/test/${nameNext}.webp`;
         request
             .get(result58.toString())
-            .pipe(fs.createWriteStream(path))
-        result58 = path;
+            .pipe(fs.createWriteStream(pathStart))
+        result58 = pathNext;
     }
 
     //9//
@@ -1680,12 +1796,14 @@ request(URL, (err, res, body) => {
     if (result59 === null || Boolean(result59) === false) {
         console.log(err)
     } else if (result59.trim().slice(0, 4) === 'http') {
-        let name = result59.trim().slice(47, -4);
-        let path = `/home/dima/parser/test/${name}.webp`;
+        let nameNext = result59.trim().slice(47, -4);
+        let name = result59.trim().slice(47);
+        let pathStart = `/home/dima/parser/upload/${name}`;
+        let pathNext = `/home/dima/parser/test/${nameNext}.webp`;
         request
             .get(result59.toString())
-            .pipe(fs.createWriteStream(path))
-        result59 = path;
+            .pipe(fs.createWriteStream(pathStart))
+        result59 = pathNext;
     }
 
 
@@ -1708,12 +1826,14 @@ request(URL, (err, res, body) => {
     if (result60 === null || Boolean(result60) === false) {
         console.log(err)
     } else if (result60.trim().slice(0, 4) === 'http') {
-        let name = result60.trim().slice(47, -4);
-        let path = `/home/dima/parser/test/${name}.webp`;
+        let nameNext = result60.trim().slice(47, -4);
+        let name = result60.trim().slice(47);
+        let pathStart = `/home/dima/parser/upload/${name}`;
+        let pathNext = `/home/dima/parser/test/${nameNext}.webp`;
         request
             .get(result60.toString())
-            .pipe(fs.createWriteStream(path))
-        result60 = path;
+            .pipe(fs.createWriteStream(pathStart))
+        result60 = pathNext;
 
     }
 
@@ -1728,26 +1848,28 @@ request(URL, (err, res, body) => {
 
 
 
-    console.log(`${result1} \n ${result2} \n ${result3} \n 
-    ${result4} \n ${result5} \n ${result6} \n ${result7} \n
-    ${result8} \n ${result9} \n ${result10} \n ${result11} \n 
-    ${result12} \n ${result13} \n ${result14} \n ${result15} \n 
-    ${result16} \n ${result17} \n ${result18} \n ${result19} \n 
-    ${result20} \n ${result21} \n ${result22} \n ${result23} \n 
-    ${result24} \n ${result25} \n ${result26} \n ${result27} \n 
-    ${result28} \n ${result29} \n ${result30} \n ${result31} \n 
-    ${result32} \n ${result33} \n ${result34} \n ${result35} \n 
-    ${result36} \n ${result37} \n ${result38} \n ${result39} \n 
-    ${result40} \n ${result41} \n ${result42} \n ${result43} \n 
-    ${result44} \n ${result45} \n ${result46} \n ${result47} \n
-    ${result48} \n ${result49} \n ${result50} \n ${result50} \n 
-    ${result51} \n ${result52} \n ${result53} \n ${result54} \n
-    ${result55} \n ${result56} \n ${result57} \n ${result58} \n
-    ${result59} \n ${result60} \n ${images}`);
+    // console.log(`${result1} \n ${result2} \n ${result3} \n 
+    // ${result4} \n ${result5} \n ${result6} \n ${result7} \n
+    // ${result8} \n ${result9} \n ${result10} \n ${result11} \n 
+    // ${result12} \n ${result13} \n ${result14} \n ${result15} \n 
+    // ${result16} \n ${result17} \n ${result18} \n ${result19} \n 
+    // ${result20} \n ${result21} \n ${result22} \n ${result23} \n 
+    // ${result24} \n ${result25} \n ${result26} \n ${result27} \n 
+    // ${result28} \n ${result29} \n ${result30} \n ${result31} \n 
+    // ${result32} \n ${result33} \n ${result34} \n ${result35} \n 
+    // ${result36} \n ${result37} \n ${result38} \n ${result39} \n 
+    // ${result40} \n ${result41} \n ${result42} \n ${result43} \n 
+    // ${result44} \n ${result45} \n ${result46} \n ${result47} \n
+    // ${result48} \n ${result49} \n ${result50} \n ${result50} \n 
+    // ${result51} \n ${result52} \n ${result53} \n ${result54} \n
+    // ${result55} \n ${result56} \n ${result57} \n ${result58} \n
+    // ${result59} \n ${result60} \n ${images}`);
 
+
+    // Model articles.json
     let idCommon = uuid.v4()
 
-    const obj = {
+    const objArticles = new articlesModel({
         title: root('.post h1').text(),
         text: {
             t1: result1,
@@ -1812,58 +1934,74 @@ request(URL, (err, res, body) => {
             t60: result60,
         },
         id: idCommon
-    }
+    })
 
-    const objTitle = {
+    objArticles.save(err => {
+        if (err) throw err;
+        console.log('Article successfully saved')
+    })
+
+    // Model title.json
+    const objTitle = new titleModel({
         title: root('.post h1').text(),
         images: images,
-        id: idCommon
-    }
-
-    articles.database.push(obj);
-    title.database.push(objTitle)
-
-    fs.writeFileSync('./articles.json', JSON.stringify(articles), 'utf-8', err => {
-        if (err) {
-            console.log(err)
-        }
+        id: idCommon,
+        count: 0
     })
 
-    fs.writeFileSync('./title.json', JSON.stringify(title), 'utf-8', err => {
-        if (err) {
-            console.log(err)
-        }
+    objTitle.save(err => {
+        if (err) throw err;
+        console.log('Title successfully saved');
     })
 })
 
-
+// Foto converter
 const readDr = fs.readdirSync('./upload')
 readDr.map(t => {
-    let newName = t.slice(0, -4)
+    let newname = t.slice(0, -4)
     sharp(`./upload/${t}`)
-
         .flop()
         .toFormat('webp')
-        .toFile(`./test/${newName}.webp`)
+        .toFile(`./test/${newname}.webp`)
 })
-
-
-
-
-
 
 
 router.get("/api/mainarticles", (req, res) => {
-    res.json(title.database)
+    titleModel.find({}).limit(3).exec((err, articles) => {
+        res.json(articles)
+    })
 })
 
 
-router.get("/api/:id/article", (req, res) => {
-    let idArticle = req.params.id;
-    let article = articles.database.filter(t => {
-        return t.id === idArticle
+router.get("/api/:id/:count/article", (req, res) => {
+    articlesModel.find({
+        id: req.params.id
+    }, (err, articles) => {
+        res.json(articles)
+
+        titleModel.find({
+            id: req.params.id
+        }, (err, out) => {
+            let data = out.map(t => t.count)
+            titleModel.update({
+                id: req.params.id
+            }, {
+                count: ++data
+            }, err => {
+                if (err) throw err
+            })
+        })
+
+
+
     })
-    res.json(article)
+
+    // titleSchema.pre('save', next => {
+    //     let cnt = this;
+    //     console.log(cnt.count)
+    //     next()
+    // })
+
 })
 
 module.exports = router;

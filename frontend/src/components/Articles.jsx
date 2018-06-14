@@ -129,11 +129,20 @@ const Articles = ({
 
     p56.trim().slice(0, 1) === '/' ? test57 = <img src={p56} alt="" /> : test57 = <p>{p56}</p>
 
-    p57.trim().slice(0, 1) === '/' ? test58 = <img src={p57} alt="" /> : test58 = <p>{p57}</p>
 
-    p58.trim().slice(0, 1) === '/' ? test59 = <img src={p58} alt="" /> : test59 = <p>{p58}</p>
+    if (p57 !== undefined) {
+        p57.trim().slice(0, 1) === '/' ? test58 = <img src={p57} alt="" /> : test58 = <p>{p57}</p>
+    }
 
-    p59.trim().slice(0, 1) === '/' ? test60 = <img src={p59} alt="" /> : test60 = <p>{p59}</p>
+    if (p58 !== undefined) {
+        p58.trim().slice(0, 1) === '/' ? test59 = <img src={p58} alt="" /> : test59 = <p>{p58}</p>
+    }
+
+    if (p59 !== undefined) {
+        p59.trim().slice(0, 1) === '/' ? test60 = <img src={p59} alt="" /> : test60 = <p>{p59}</p>
+    }
+
+
 
     return (
         <section>

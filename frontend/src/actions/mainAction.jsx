@@ -6,7 +6,7 @@ const error = () => ({ type: 'FETCH_ARTICLES_ERROR' })
 const load = () => (dispatch) => {
     dispatch(loading())
     
-    fetch('http://localhost:2020/api/mainarticles')
+    fetch('http://localhost:6060/api/mainarticles')
         .then(response => response.json())
         .then(item => item.map(object => {
             return [{

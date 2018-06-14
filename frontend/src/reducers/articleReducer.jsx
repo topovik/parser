@@ -9,7 +9,6 @@ const articleReducer = (state = initialState, action) => {
             return { ...state, status: 'loading' }
 
         case 'ARTICLE_LOADED_SUCCESS':
-        console.log(action.article)
             return { ...state, article: action.article, status: 'success' }
 
         case 'ARTICLE_ERROR':
