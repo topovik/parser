@@ -1,15 +1,13 @@
 const loadingArticle = () => ({ type: 'ARTICLE_LOADING' });
 const loadedArticle = (article) => ({ type: 'ARTICLE_LOADED_SUCCESS', article })
 const errorArticle = () => ({ type: 'ARTICLE_ERROR' })
-let count = '';
+
 
 const loadArticle = (id) => (dispatch, getState) => {
     let idArticle = id;
-    let countArticle = ++count;
     dispatch(loadingArticle())
-console.log(countArticle)
 
-    fetch(`http://localhost:6060/api/${idArticle}/${countArticle}/article`)
+    fetch(`http://localhost:6060/api/${idArticle}/article`)
         .then(response => response.json())
         .then(t => t.map(obj => {
             return [{

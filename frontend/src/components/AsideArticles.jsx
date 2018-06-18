@@ -1,7 +1,7 @@
 import React, { Component } from 'react'
 
 
-class MainArticles extends Component {
+class AsideArticles extends Component {
 
     render() {
 
@@ -16,4 +16,4 @@ class MainArticles extends Component {
 }
 
 
-export default MainArticles
+export default AsideArticles

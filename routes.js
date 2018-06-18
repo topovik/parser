@@ -1972,8 +1972,21 @@ router.get("/api/mainarticles", (req, res) => {
     })
 })
 
+router.get("/api/asidearticles", (req, res) => {
+    titleModel.find({}).sort('-count').limit(5).exec((err, articles) => {
+        res.json(articles)
+    })
+})
 
-router.get("/api/:id/:count/article", (req, res) => {
+router.get("/api/:cnt/nextarticles", (req, res) => {
+    let countArticles = Number(req.params.cnt);
+    titleModel.find({}).skip(countArticles).limit(4).exec((err, articles) => {
+        res.json(articles)
+    })
+})
+
+
+router.get("/api/:id/article", (req, res) => {
     articlesModel.find({
         id: req.params.id
     }, (err, articles) => {
@@ -1992,15 +2005,7 @@ router.get("/api/:id/:count/article", (req, res) => {
             })
         })
 
-
-
     })
-
-    // titleSchema.pre('save', next => {
-    //     let cnt = this;
-    //     console.log(cnt.count)
-    //     next()
-    // })
 
 })
 
