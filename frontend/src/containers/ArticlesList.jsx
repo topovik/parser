@@ -1,14 +1,9 @@
 import React, { Component } from 'react'
 import { connect } from 'react-redux'
 import Articles from '../components/Articles'
-import loadArticle from '../actions/articleAction'
+
 
 class ArticlesList extends Component {
-
-    componentDidMount() {
-        this.props.loadArticle()
-    }
-
     render() {
         const list = this.props.articles.map(t => {
             return <Articles
@@ -91,11 +86,4 @@ const mapStatetoProps = (state) => {
     }
 }
 
-const mapDispatchToProps = (dispatch) => {
-    return {
-        loadArticle: () => dispatch(loadArticle())
-    }
-}
-
-
-export default connect(mapStatetoProps, mapDispatchToProps)(ArticlesList)
+export default connect(mapStatetoProps)(ArticlesList)

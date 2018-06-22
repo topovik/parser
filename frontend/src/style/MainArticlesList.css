@@ -1,0 +1,10 @@
+.MainArticlesList a:nth-child(odd) {
+    display: inline-grid;
+    margin-left: 4vw;
+   
+}
+
+.MainArticlesList a:nth-child(even) {
+    display: inline-grid;
+    margin-left: 4vw;
+}

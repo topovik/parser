@@ -2,17 +2,15 @@ import React, { Component } from 'react'
 import load from '../actions/mainAction'
 import loadArticle from '../actions/articleAction'
 import loadSeeMore from '../actions/seeMoreAction'
-import loadAside from '../actions/asideAction'
 import { connect } from 'react-redux'
 import MainArticles from '../components/MainArticles'
 import ButtonMore from '../components/ButtonMore'
-import AsideArticles from '../components/AsideArticles'
+import '../style/MainArticlesList.css'
 
 class MainArticlesList extends Component {
 
     componentDidMount() {
         this.props.load()
-        this.props.loadAside()
     }
 
 
@@ -27,31 +25,22 @@ class MainArticlesList extends Component {
             />
         })
 
-        const asideList = this.props.asideArticles.map(p => {
-            return <AsideArticles
-                title={p[0].title}
-                images={p[0].images}
-                key={p[0].id}
-                item={p[0]}
-                loadArticle={this.props.loadArticle} />
-        })
-
         return (
-            <div>
-                {mainList}
+            <React.Fragment>
+                <div className="MainArticlesList">
+                    {mainList}
+                </div>
                 <ButtonMore articlesLength={this.props.articlesList}
                     loadSeeMore={this.props.loadSeeMore}
                 />
-                {asideList}
-            </div>
+            </React.Fragment>
         )
     }
 }
 
 const mapStateToProps = (state) => {
     return {
-        articlesList: state.fetchReducer.mainArticles,
-        asideArticles: state.asideReducer.asideArticles
+        articlesList: state.fetchReducer.mainArticles
     }
 }
 
@@ -59,8 +48,7 @@ const mapDispatchToProps = (dispatch) => {
     return {
         load: () => dispatch(load()),
         loadArticle: (id) => dispatch(loadArticle(id)),
-        loadSeeMore: (count) => dispatch(loadSeeMore(count)),
-        loadAside: () => dispatch(loadAside())
+        loadSeeMore: (count) => dispatch(loadSeeMore(count))
     }
 }
 

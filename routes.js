@@ -1,6 +1,4 @@
 const fs = require('fs');
-const articles = require('./articles.json');
-const title = require('./title.json')
 const uuid = require('node-uuid');
 const router = require('express').Router();
 const request = require('request');

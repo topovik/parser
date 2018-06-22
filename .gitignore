@@ -5,6 +5,7 @@
 /upload
 /test
 /config
+/ssl
 
 # testing
 /coverage

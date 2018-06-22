@@ -1,15 +1,18 @@
 import React, { Component } from 'react'
+import { Link } from 'react-router-dom'
 
 
 class MainArticles extends Component {
 
     render() {
-
         return (
-            <div onClick={() => this.props.loadArticle(this.props.item.id)} >
-                <p>{this.props.title}</p>
-                <img src={this.props.images} alt={this.props.title}/>
-            </div>
+            <Link to={`/article/${this.props.item.id}`} onClick={() => this.props.loadArticle(this.props.item.id)}>
+                <div>
+                    <p>{this.props.title}</p>
+                    <img src={this.props.images} alt={this.props.title} />
+                </div>
+            </Link>
+
         )
     }
 

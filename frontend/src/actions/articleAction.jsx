@@ -6,6 +6,7 @@ const errorArticle = () => ({ type: 'ARTICLE_ERROR' })
 const loadArticle = (id) => (dispatch, getState) => {
     let idArticle = id;
     dispatch(loadingArticle())
+    console.log(idArticle)
 
     fetch(`http://localhost:6060/api/${idArticle}/article`)
         .then(response => response.json())
