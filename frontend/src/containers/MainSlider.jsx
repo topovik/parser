@@ -1,13 +1,20 @@
 import React, { Component } from 'react'
 import Carousel from 'nuka-carousel';
 import { connect } from 'react-redux';
+import loadSlider from '../actions/sliderAction';
+import loadArticle from '../actions/articleAction';
 import '../style/MainSlider.css'
-import MainArticles from '../components/MainArticles'
+import SliderArticles from '../components/SliderArticles'
 
 class MainSlider extends Component {
+
+    componentDidMount() {
+        this.props.loadSlider()
+    }
+
     render() {
-        const sliderList = this.props.articlesList.map(t => {
-            return <MainArticles
+        const sliderList = this.props.sliderArticlesList.map(t => {
+            return <SliderArticles
                 title={t[0].title}
                 images={t[0].images}
                 key={t[0].id}
@@ -39,8 +46,15 @@ class MainSlider extends Component {
 
 const mapStateToProps = (state) => {
     return {
-        articlesList: state.fetchReducer.mainArticles
+        sliderArticlesList: state.sliderReducer.sliderArticles
     }
 }
 
-export default connect(mapStateToProps)(MainSlider)
+const mapDispatchToProps = (dispatch) => {
+    return {
+        loadSlider: () => dispatch(loadSlider()),
+        loadArticle: (id) => dispatch(loadArticle(id))
+    }
+}
+
+export default connect(mapStateToProps, mapDispatchToProps)(MainSlider)

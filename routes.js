@@ -1970,6 +1970,12 @@ router.get("/api/mainarticles", (req, res) => {
     })
 })
 
+router.get("/api/sliderarticles", (req, res) => {
+    titleModel.find({}).limit(20).exec((err, articles) => {
+        res.json(articles)
+    })
+})
+
 router.get("/api/asidearticles", (req, res) => {
     titleModel.find({}).sort('-count').limit(5).exec((err, articles) => {
         res.json(articles)
