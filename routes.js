@@ -1954,14 +1954,17 @@ request(URL, (err, res, body) => {
 })
 
 // Foto converter
-const readDr = fs.readdirSync('./upload')
-readDr.map(t => {
-    let newname = t.slice(0, -4)
-    sharp(`./upload/${t}`)
-        .flop()
-        .toFormat('webp')
-        .toFile(`./test/${newname}.webp`)
-})
+setTimeout(() => {
+    fs.readdir('./upload', (err, files) => {
+        files.map(t => {
+            let newname = t.slice(0, -4)
+            sharp(`./upload/${t}`)
+                .flop()
+                .toFormat('webp')
+                .toFile(`./test/${newname}.webp`)
+        })
+    })
+}, 1000);
 
 
 router.get("/api/mainarticles", (req, res) => {
